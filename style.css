@@ -1,0 +1,42 @@
+body {
+    margin:0px;
+    display:flex;
+    justify-content: space-evenly;
+}
+
+.container{
+    display:flex;
+    flex-wrap:wrap;
+    margin:0px;
+    height:640px;
+    width:640px;
+    justify-content: center;
+    flex:0 1 auto;
+    border-style:solid;
+    border-color:black;
+}
+.toolBar{
+    display:flex;
+    flex:1;
+    flex-direction:column;
+}
+
+.grid {
+    flex: 0 0  auto;
+    display:flex;
+}
+
+button {
+    width:150px;
+    height:100px;
+}
+
+.color {
+    width:50px;
+    height:50px;
+    border-style:solid;
+}
+.pallette{
+    display:flex;
+    gap:2px;
+}
