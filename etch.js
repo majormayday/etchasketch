@@ -51,7 +51,7 @@ function setPallette(){
     colors.forEach(color => color.innerHTML = ""); 
 }
 function selectColor(e){
-    //This function is called by the pixels to select the color it should change to
+    //This function is called by the color boxes to create a box
     const container = document.querySelector('.container');
     if (container.hasAttribute('colorSelect') == true){
         container.removeAttribute('colorSelect');
@@ -60,7 +60,13 @@ function selectColor(e){
 }
 function setColor(e){
     const container = document.querySelector('.container');
+    if (container.hasAttribute('rainbow')==true){
+        e.target.style.backgroundColor = randomColor();
+        console.log(randomColor());
+    }
+    else{
     e.target.style.backgroundColor = container.getAttribute('colorSelect');
+    }
 }
 function setButtons(){
 removeEvents.addEventListener('click',clearCanvas);
@@ -68,10 +74,16 @@ pixelSize.addEventListener('click',createCanvas);
 rainbowEffect.addEventListener('click',createRainbows);  
 }
 function createRainbows(){
-
+    if (container.hasAttribute('rainbow')==true){
+        container.removeAttribute('rainbow');
+    }
+    else{
+        container.setAttribute('rainbow',"");
+    }
 }
-function randomColor(e){
-    e.target.style.backgroundColor = "hsl(" + Math.floor(Math.random()*320) + ', 100%, 50%)';
+function randomColor(){
+    let random  = "hsl(" + Math.floor(Math.random()*320) + ', 100%, 50%)';
+    return random;
 }
 function createPallette() {
     for (i=0;i<320;i+=18){
