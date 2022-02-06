@@ -1,7 +1,10 @@
 body {
     margin:0px;
     display:flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
+    align-items:flex-start;
+    height:100vh;
+    background-color:rgb(233, 230, 217);
 }
 
 .container{
@@ -14,29 +17,53 @@ body {
     flex:0 1 auto;
     border-style:solid;
     border-color:black;
+    align-self:center;
+    box-shadow:
+    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
 }
 .toolBar{
     display:flex;
     flex:1;
     flex-direction:column;
+    justify-content:flex-start;
+    align-items:flex-start;
 }
-
+.tools{
+}
 .grid {
     flex: 0 0  auto;
     display:flex;
+    background-color:white;
 }
-
 button {
     width:150px;
-    height:100px;
+    height:70px;
+    font-family:Roboto,sans-serif;
+    border-radius:100px;
 }
-
 .color {
-    width:50px;
-    height:50px;
+    width:40px;
+    height:40px;
     border-style:solid;
+}
+.colors{
+    width:25vh;
 }
 .pallette{
     display:flex;
     gap:2px;
+    flex-wrap:wrap;
+}
+
+.space{
+    flex:1;
+}
+
+h1{
+    font-family:Robot,sans-serif;
 }

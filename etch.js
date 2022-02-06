@@ -1,30 +1,23 @@
 const container = document.querySelector('.container');
-const mouseOver = document.querySelector('.mouseOver');
-const clickOn = document.querySelector('.clickOn');
 const removeEvents=document.querySelector('.removeEvents');
 const pixelSize = document.querySelector('.pixelSize');
+const pallette=  document.querySelector('.pallette');
+const rainbowEffect= document.querySelector('.rainbowEffect');
 
 //Tools
-function setMouseover(){
-    const grids = document.querySelectorAll('.grid');
-
-    if (grids[0].getAttribute('listeneroc') == 'true'){
-        grids.forEach(grid => grid.removeEventListener('click', setColor));
-        grids.forEach(grid => grid.removeAttribute('listeneroc'));
-    }
-     grids.forEach(grid => grid.addEventListener('mouseover', setColor));
-     grids.forEach(grid => grid.setAttribute('listenermo', 'true'));
+function setContainerEvents(){
+    container.addEventListener('mousedown', mouseDownEvent);
+    container.addEventListener('mouseup', mouseUpEvent);
 }
-function setClick(){
+function mouseDownEvent(){
     const grids = document.querySelectorAll('.grid');
-
-    if (grids[0].getAttribute('listenermo') == 'true'){
-        grids.forEach(grid => grid.removeEventListener('mouseover', setColor));
-        grids.forEach(grid => grid.removeAttribute('listenermo'));
-    }
-    grids.forEach(grid => grid.addEventListener('click', setColor));
-    grids.forEach(grid => grid.setAttribute('listeneroc', 'true'));
-
+    grids.forEach(grid => grid.addEventListener('mouseover', setColor));
+    grids.forEach(grid => grid.addEventListener('mouseup', setColor));
+}
+function mouseUpEvent(){
+    const grids = document.querySelectorAll('.grid');
+    grids.forEach(grid => grid.removeEventListener('mouseover', setColor));
+    grids.forEach(grid => grid.removeEventListener('mouseup', setColor));
 }
 function clearCanvas(){
     const grids = document.querySelectorAll('.grid');
@@ -36,9 +29,8 @@ function createCanvas() {
         container.removeChild(container.lastChild);
       }
 let gSize = window.prompt('How many pixels per side? (Max 100)');
-
 if (gSize > 100) gSize = 100;
-//Check is divs already
+
 
 //Create the pixels
 for (i=0; i< (gSize*gSize) ; i++){
@@ -58,8 +50,8 @@ function setPallette(){
     colors.forEach(color => color.addEventListener('click', selectColor));
     colors.forEach(color => color.innerHTML = ""); 
 }
-
 function selectColor(e){
+    //This function is called by the pixels to select the color it should change to
     const container = document.querySelector('.container');
     if (container.hasAttribute('colorSelect') == true){
         container.removeAttribute('colorSelect');
@@ -71,29 +63,30 @@ function setColor(e){
     e.target.style.backgroundColor = container.getAttribute('colorSelect');
 }
 function setButtons(){
-mouseOver.addEventListener('click', setMouseover);
-clickOn.addEventListener('click', setClick);
 removeEvents.addEventListener('click',clearCanvas);
 pixelSize.addEventListener('click',createCanvas);
-   
+rainbowEffect.addEventListener('click',createRainbows);  
 }
+function createRainbows(){
 
-/* Set attribute in container that holds the currently selected color and then set the bg color
-based on that attribute value.
-*/
-
-
-
-
-
+}
+function randomColor(e){
+    e.target.style.backgroundColor = "hsl(" + Math.floor(Math.random()*320) + ', 100%, 50%)';
+}
+function createPallette() {
+    for (i=0;i<320;i+=18){
+        
+             let colorAdd = document.createElement('div');
+             colorAdd.classList.add('color');
+             colorAdd.innerHTML = "hsl(" + i + ', 100%, 50%)';
+             pallette.appendChild(colorAdd); 
+     }
+ }   
 
 createCanvas();
+createPallette();
 setPallette();
 setButtons();
-
-
-
-
-
+setContainerEvents();
 
 
