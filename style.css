@@ -4,7 +4,7 @@ body {
     justify-content: space-around;
     align-items:flex-start;
     height:100vh;
-    background-color:rgb(233, 230, 217);
+    background-color:#f1c40f
 }
 
 .container{
@@ -16,7 +16,7 @@ body {
     justify-content: center;
     flex:0 1 auto;
     border-style:solid;
-    border-color:black;
+    border-color:#34495e;
     align-self:center;
     box-shadow:
     0 2.8px 2.2px rgba(0, 0, 0, 0.034),
@@ -25,6 +25,7 @@ body {
     0 22.3px 17.9px rgba(0, 0, 0, 0.072),
     0 41.8px 33.4px rgba(0, 0, 0, 0.086),
     0 100px 80px rgba(0, 0, 0, 0.12);
+    background-color:white;
 }
 .toolBar{
     display:flex;
@@ -32,8 +33,11 @@ body {
     flex-direction:column;
     justify-content:flex-start;
     align-items:flex-start;
+    margin-left:5px;
 }
 .tools{
+    display:flex;
+    flex-direction:column;
 }
 .grid {
     flex: 0 0  auto;
@@ -44,20 +48,26 @@ button {
     width:150px;
     height:70px;
     font-family:Roboto,sans-serif;
-    border-radius:100px;
+    border-radius:10px;
+    border-width:0px;
+    margin-bottom:5px;
+    background-color:white;
 }
 .color {
     width:40px;
     height:40px;
     border-style:solid;
+    
 }
 .colors{
-    width:25vh;
+    width:5vw;
+    flex:1;
 }
 .pallette{
     display:flex;
-    gap:2px;
     flex-wrap:wrap;
+    background-color:#95a5a6;
+    width:16vw;
 }
 
 .space{
@@ -66,4 +76,5 @@ button {
 
 h1{
     font-family:Robot,sans-serif;
+    color:#34495e;
 }

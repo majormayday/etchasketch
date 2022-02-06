@@ -21,7 +21,7 @@ function mouseUpEvent(){
 }
 function clearCanvas(){
     const grids = document.querySelectorAll('.grid');
-    grids.forEach(grid => grid.style.backgroundColor = 'unset');
+    grids.forEach(grid => grid.style.backgroundColor = 'white');
 }
 function createCanvas() {
  //Removes any pixels already in the canvas
@@ -48,7 +48,13 @@ function setPallette(){
     colors.forEach(color => color.style.backgroundColor = color.innerHTML);
     colors.forEach(color => color.style.borderColor = color.innerHTML);
     colors.forEach(color => color.addEventListener('click', selectColor));
+    colors.forEach(color => color.addEventListener('click', selected));
     colors.forEach(color => color.innerHTML = ""); 
+}
+function selected(e){
+    const colors = document.querySelectorAll('.color');
+    colors.forEach(color => color.style.transform = 'scale(1.0)');
+    e.target.style.transform = 'scale(0.7)'
 }
 function selectColor(e){
     //This function is called by the color boxes to create a box
@@ -73,13 +79,17 @@ removeEvents.addEventListener('click',clearCanvas);
 pixelSize.addEventListener('click',createCanvas);
 rainbowEffect.addEventListener('click',createRainbows);  
 }
+
 function createRainbows(){
     if (container.hasAttribute('rainbow')==true){
         container.removeAttribute('rainbow');
+        rainbowEffect.style.backgroundColor = 'white'
     }
     else{
         container.setAttribute('rainbow',"");
+        rainbowEffect.style.backgroundColor = 'lightgreen'
     }
+
 }
 function randomColor(){
     let random  = "hsl(" + Math.floor(Math.random()*320) + ', 100%, 50%)';
@@ -87,14 +97,27 @@ function randomColor(){
 }
 function createPallette() {
     for (i=0;i<320;i+=18){
-        
              let colorAdd = document.createElement('div');
              colorAdd.classList.add('color');
              colorAdd.innerHTML = "hsl(" + i + ', 100%, 50%)';
              pallette.appendChild(colorAdd); 
      }
+     for(j=0; j<= 100; j+=100){
+        let colorAdd = document.createElement('div');
+        colorAdd.classList.add('color');
+        colorAdd.innerHTML = "hsl( 0, 100%,"+ j + "%)";
+        pallette.appendChild(colorAdd); 
+     }
+  
+
+
  }   
 
+
+
+
+
+ //Initalize
 createCanvas();
 createPallette();
 setPallette();
