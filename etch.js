@@ -35,8 +35,8 @@ function createCanvas() {
     while (container.firstChild) {
         container.removeChild(container.lastChild);
       }
-//let gSize = window.prompt('How many pixels per side? (Max 100)');
-let gSize = 4;
+let gSize = window.prompt('How many pixels per side? (Max 100)');
+
 if (gSize > 100) gSize = 100;
 //Check is divs already
 
@@ -51,18 +51,25 @@ const grids = document.querySelectorAll('.grid');
 grids.forEach (grid => grid.style.height = (640 / gSize) + 'px');
 grids.forEach (grid => grid.style.width = (640 / gSize) +  'px')
 }   
-
 function setPallette(){
     const colors = document.querySelectorAll('.color');
     colors.forEach(color => color.style.backgroundColor = color.innerHTML);
     colors.forEach(color => color.style.borderColor = color.innerHTML);
+    colors.forEach(color => color.addEventListener('click', selectColor));
     colors.forEach(color => color.innerHTML = ""); 
 }
 
-function setColor(e){
-    e.target.style.backgroundColor = 'blue';
+function selectColor(e){
+    const container = document.querySelector('.container');
+    if (container.hasAttribute('colorSelect') == true){
+        container.removeAttribute('colorSelect');
+    }
+    container.setAttribute('colorSelect', e.target.style.backgroundColor);
 }
-
+function setColor(e){
+    const container = document.querySelector('.container');
+    e.target.style.backgroundColor = container.getAttribute('colorSelect');
+}
 function setButtons(){
 mouseOver.addEventListener('click', setMouseover);
 clickOn.addEventListener('click', setClick);
@@ -71,7 +78,9 @@ pixelSize.addEventListener('click',createCanvas);
    
 }
 
-//Set Buttons
+/* Set attribute in container that holds the currently selected color and then set the bg color
+based on that attribute value.
+*/
 
 
 
